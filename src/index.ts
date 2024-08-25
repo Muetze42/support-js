@@ -1,3 +1,3 @@
 export { Str } from '~/Str';
-export { NumberHelper } from '~/NumberHelper';
+export { SNumber } from '~/SNumber';
 export * from '~/helpers';

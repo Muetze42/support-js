@@ -3,7 +3,7 @@
  * the MIT License (https://github.com/laravel/framework?tab=MIT-1-ov-file#readme)
  * Copyright (c) 2011-2024 Laravel Holdings Inc. (https://laravel.com/)
  */
-export class NumberHelper {
+export class SNumber {
   /**
    * The current default locale.
    */
