@@ -45,7 +45,7 @@ export class SNumber {
   /**
    * Convert the given number to its currency equivalent.
    */
-  public static currency(number: number, currency: string | null, locale: string | null = null): string | false {
+  public static currency(number: number, currency: string | null = null, locale: string | null = null): string | false {
     let useLocale: string = locale ? locale : this.getLocale()
     let useCurrency: string = currency ? currency : this.defaultCurrency
 
