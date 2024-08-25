@@ -49,8 +49,6 @@ export class SNumber {
     let useLocale: string = locale ? locale : this.getLocale()
     let useCurrency: string = currency ? currency : this.defaultCurrency
 
-    console.log('useCurrency', useCurrency)
-
     try {
       return new Intl.NumberFormat(useLocale, {
         style: 'currency',
