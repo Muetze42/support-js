@@ -79,27 +79,3 @@ export function ctype_lower(text: any): boolean {
 
   return text === text.replace(/[^a-zA-Z0-9]+/g, '').toLowerCase()
 }
-
-/**
- * Returns an array of strings, each of which is a substring of string formed by splitting it on boundaries
- * formed by the string separator.
- */
-export function explode(separator: string, string: string, limit: number = 2147483647): string[] {
-  let parts: string[] = string.split(separator)
-  let array: string[] = []
-  let key: number = 0
-  limit = limit - 1
-
-  for (let i = 0; i < parts.length; i++) {
-    if (i > limit) {
-      array[key] = array[key] + parts[i]
-      continue
-    }
-    if (i === limit) {
-      key = i
-    }
-    array[i] = parts[i]
-  }
-
-  return array
-}
