@@ -1,3 +1,7 @@
+// noinspection JSUnusedGlobalSymbols
+
+import { ctype_lower } from '~/helpers'
+
 /**
  * This class is derived from the code of the Laravel™ Framework (2024-08-24), wich is subject of
  * the MIT License (https://github.com/laravel/framework?tab=MIT-1-ov-file#readme)
@@ -22,27 +26,27 @@ export class Str {
    * Convert the given number to its currency equivalent.
    */
   public static camel(value: string): string {
-    value = value.replace(/[-_\s.]+(.)?/g, (_, c) => c ? c.toUpperCase() : '')
-
-    return value.substring(0, 1).toLowerCase() + value.substring(1)
+    return this.lcfirst(this.studly(value))
   }
 
   /**
    * Convert a string to kebab case.
    */
   public static kebab(value: string): string {
-    return value.replace(/([a-z])([A-Z])/g, '$1-$2')
-      .replace(/[\s_]+/g, '-')
-      .toLowerCase()
+    return this.snake(value, '-')
   }
 
   /**
    * Convert a string to snake case.
    */
-  public static snake(value: string): string {
-    return value.replace(/([a-z])([A-Z])/g, '$1-$2')
-      .replace(/[\s_]+/g, '_')
-      .toLowerCase()
+  public static snake(value: string, delimiter: string = '_'): string {
+    if (!ctype_lower(value)) {
+      value = this.ucwords(value)
+      value = value.replace(/\s+/u, '')
+      value = value.replace(/(.)(?=[A-Z])/u, '$1' + delimiter)
+    }
+
+    return value.toLowerCase()
   }
 
   /**
@@ -117,27 +121,12 @@ export class Str {
   }
 
   /**
-   * Returns an array of strings, each of which is a substring of string formed by splitting it on boundaries
-   * formed by the string separator.
+   * Uppercase the first character of each word in a string.
    */
-  public static explode(separator: string, string: string, limit: number = 2147483647): string[] {
-    let parts: string[] = string.split(separator)
-    let array: string[] = []
-    let key: number = 0
-    limit = limit - 1
-
-    for (let i = 0; i < parts.length; i++) {
-      if (i > limit) {
-        array[key] = array[key] + parts[i]
-        continue
-      }
-      if (i === limit) {
-        key = i
-      }
-      array[i] = parts[i]
-    }
-
-    return array
+  public static ucwords(value: string): string {
+    return value.toLowerCase().replace(/\b[a-z]/g, function(letter: string) {
+      return letter.toUpperCase();
+    })
   }
 
   /**

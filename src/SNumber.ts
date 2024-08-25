@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 /**
  * This class is derived from the code of the Laravel™ Framework (2024-08-24), wich is subject of
  * the MIT License (https://github.com/laravel/framework?tab=MIT-1-ov-file#readme)
