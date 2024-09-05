@@ -9,7 +9,7 @@
 /**
  * Get an item from an array or object using "dot" notation.
  */
-export function data_get(obj: object, path: string | number, fallback = null) {
+export function data_get(obj: object, path: string | number, fallback: any = null) {
     if (Number.isInteger(path)) {
         path = path.toString()
     }
