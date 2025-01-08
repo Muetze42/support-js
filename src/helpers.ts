@@ -10,12 +10,26 @@
  * Get an item from an array or object using "dot" notation.
  */
 export function data_get(obj: object, path: string | number, fallback: any = null) {
+    return data_get_with(obj, path, fallback)
+}
+
+/**
+ * Get an item from an array or object using colon.
+ */
+export function data_get_colon(obj: object, path: string | number, fallback: any = null) {
+    return data_get_with(obj, path, fallback, ':')
+}
+
+/**
+ * Get an item from an array or object using specific separator.
+ */
+export function data_get_with(obj: object, path: string | number, fallback: any = null, separator: string = '.') {
     if (Number.isInteger(path)) {
         path = path.toString()
     }
     path = <string>path
 
-    let properties = Array.isArray(path) ? path : path.split('.')
+    let properties = Array.isArray(path) ? path : path.split(separator)
     let value = properties.reduce((prev, curr) => {
         return prev && prev[curr]
     }, obj)
