@@ -1,3 +1,5 @@
+import { Str } from '~/Str'
+
 export class SFile {
   /**
    * Remove a file from FileList by index key.
@@ -11,6 +13,36 @@ export class SFile {
     }
 
     return dt.files
+  }
+
+  /**
+   * Limit the number of characters in a filename string.
+   */
+  public static limit(value: string, length: number = 16, end: string = '...'): string {
+    if (value.length <= length) {
+      return value
+    }
+
+    length = length - end.length - 1
+
+    let ext = ''
+    let parts = Str.reverse(value).split('.')
+
+    if (parts.length > 1) {
+      ext = Str.reverse(parts[0])
+    }
+
+    value = ''
+
+    for (let i = 0; i < parts.length; i++) {
+      if (i > 0) {
+        value += parts[i]
+      }
+    }
+
+    value = Str.reverse(value)
+
+    return value.substring(0, length - ext.length) + end + ext
   }
 
   /**

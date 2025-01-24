@@ -100,12 +100,19 @@ export class Str {
   }
 
   /**
-   * Strip whitespace (or other characters) from the end of a string
+   * Strip whitespace (or other characters) from the end of a string.
    */
   public static rtrim(string: string, character: string = '\\s'): string {
     let regex = new RegExp(character + '+$', 'g')
 
     return string.replace(regex, '')
+  }
+
+  /**
+   * Reverse a string.
+   */
+  public static reverse(value: string): string {
+    return value.split('').reverse().join('')
   }
 
   /**
