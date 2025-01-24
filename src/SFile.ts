@@ -1,4 +1,21 @@
 export class SFile {
+  /**
+   * Remove a file from FileList by index key.
+   */
+  public static removeFormList(fileList: File[] | FileList, indexKey: number): FileList {
+    const dt = new DataTransfer()
+    for (let i = 0; i < fileList.length; i++) {
+      if (indexKey !== i) {
+        dt.items.add(fileList[i])
+      }
+    }
+
+    return dt.files
+  }
+
+  /**
+   * Get a Font Awesome icon determined by filename extension.
+   */
   public static faIconByFileName(fileName: string): string {
     const extension = fileName.toLowerCase().split('.').pop()
     const iconPrefix = 'fa-regular fa-'
