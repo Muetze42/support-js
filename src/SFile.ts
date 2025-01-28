@@ -1,5 +1,7 @@
 import { Str } from '~/Str'
 
+type FontAwesomeStyle = 'solid' | 'regular' | 'light' | 'thin'
+
 export class SFile {
   /**
    * Remove a file from FileList by index key.
@@ -48,9 +50,9 @@ export class SFile {
   /**
    * Get a Font Awesome icon determined by filename extension.
    */
-  public static faIconByFileName(fileName: string): string {
+  public static faIconByFileName(fileName: string, style: FontAwesomeStyle = 'regular'): string {
     const extension = fileName.toLowerCase().split('.').pop()
-    const iconPrefix = 'fa-regular fa-'
+    const iconPrefix = 'fa-' + style + ' fa-'
 
     let icon = ''
     switch (extension) {
