@@ -1,7 +1,5 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { ctype_lower } from '~/helpers'
-
 /**
  * This class is derived from the code of the Laravel™ Framework (2024-08-24), wich is subject of
  * the MIT License (https://github.com/laravel/framework?tab=MIT-1-ov-file#readme)
@@ -40,13 +38,21 @@ export class Str {
    * Convert a string to snake case.
    */
   public static snake(value: string, delimiter: string = '_'): string {
-    if (!ctype_lower(value)) {
+    if (!this.ctype_lower(value)) {
       value = this.ucwords(value)
       value = value.replace(/\s+/u, '')
       value = value.replace(/(.)(?=[A-Z])/u, '$1' + delimiter)
     }
 
     return value.toLowerCase()
+  }
+
+  private static ctype_lower(text: any): boolean {
+    if (typeof text !== 'string') {
+      return false
+    }
+
+    return text === text.replace(/[^a-zA-Z0-9]+/g, '').toLowerCase()
   }
 
   /**
@@ -141,14 +147,5 @@ export class Str {
    */
   public static numbers(value: string): string {
     return value.replace(/[^0-9]/g,'')
-  }
-
-  /**
-   * Generate a UUID (version 4).
-   */
-  public static uuid(): string {
-    return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, (c) =>
-      (+c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))).toString(16)
-    )
   }
 }
